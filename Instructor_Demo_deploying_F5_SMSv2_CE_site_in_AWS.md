@@ -94,7 +94,7 @@ For this training, automating the deployment process will ensure that the CE sit
 The following steps are to be performed by the **Instructor only** and will show how to deploy the student CE sites using Terraform.
 
 #### 6a. Clone the GitHub repository containing the Terraform configuration files for the CE site deployment
-- Clone the following GitHub repository to your local machine:
+Clone the following GitHub repository to your local machine:
 ```
 git clone https://github.com/dmonye017/f5xc-smsv2-int.git 
 ```
@@ -113,7 +113,7 @@ Copy the downloaded P12 file into the **same directory** where you will be runni
 You will need to update the **f5xc_api_p12_file** variable in the **students.auto.tfvars** file with the path to the P12 file.
 
 ### 6c. Export the F5XC API P12 file password to your Terminal environment
-- Switch back to the terminal window from Step 6a and run the following command to export the password:
+Switch back to the terminal window from Step 6a and run the following command to export the password:
 ```
 export VES_P12_PASSWORD="XXXXXXXXX"
 ```
@@ -123,7 +123,7 @@ Ensure that you replace **XXXXXXXXX** with the password you entered when creatin
 - **main.tf**: This file contains the main Terraform configuration for deploying the CE site in AWS.
 - **variables.tf**: This file contains the variable definitions for the Terraform configuration.
 - **outputs.tf**: This file contains the output definitions for the Terraform configuration.
-- **students.auto.tfvars**: This file contains the variable values for the student CE site deployments. You will need to update this file with the appropriate values for your AWS environment and the student CE site deployments. The following are the variable values that you will need to update:
+- **students.auto.tfvars**: This file contains the variable values for the student CE site deployments. You will need to update this file with the appropriate values for your AWS environment and the student CE site deployments. The following     are the variable values that you will need to update:
   - **aws_region**: The AWS region in which the CE site will be deployed.
   - **aws_az**: The AWS availability zone in which the CE site will be deployed.
   - **ce_ami_id**: The AMI ID for the CE site instance that will be deployed.
@@ -140,9 +140,8 @@ Ensure that you replace **XXXXXXXXX** with the password you entered when creatin
 - **f5xc-smsv2.tf**: This file contains the Terraform configuration for generating the Node Token and creating the F5XC SMSv2 CE site object in F5 Distributed Cloud.
 
 ### 6e. Before Initializing the Terraform Configuration
-- Before initializing the Terraform configuration, ensure that you have the following prerequisites in place:
   - Ensure that you have the appropriate permissions to create resources in your AWS environment.
-  - Terraform installed on your local machine.
+  - Terraform is installed on your local machine.
   - AWS CLI installed and configured with the appropriate credentials to access your AWS environment.
   - F5XC API P12 file and URL for authenticating with the F5XC API.
   - If deploying outside of **us-east-1** in AWS, Locate AMI ID for your region by navigating to **AWS Marketplace > Manage Subscriptions > F5 Distributed Cloud CE BYOL** and click launch instance. select Launch on EC2 console and view the         list of AMIs per region on the AMI details section. Once the AMI ID is identified, enter this in the **ami_id** variable for the **students.auto.tfvars** file.
