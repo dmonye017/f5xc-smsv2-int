@@ -30,10 +30,15 @@ The F5XC platform will not be able to deploy the CE site into the customer's AWS
 
 These are the default settings for the CE site and they are usually enough to get the CE site deployed in AWS. However, if you want to customize the CE site deployment, you can do so by changing the settings in the CE site object. You may want to discuss some of the other available settings in case questions arise. Look out for the following options:
 - **1. Regional Edge Selection**
+  This controls which F5XC RE your CE site will connect to for its control plane and data plane tunnels. The default is Geo-         proximity (the CE dynamically connects to the nearest RE based on geography and latency). You can choose a specific RE if a        customer has strict Data Sovereignty requirements.
 - **2. Tunnel Type**
+  Controls which encapsulation protocol is used for the tunnels between the CE and F5 REs. IPSec is the standard option but be       aware that choosing IPSec without opening UDP Port 500/4500 on your AWS security group for the CE will mean that your CE will      never complete registration. It will sit there until it times out, so ensure those ports are open in the security group.
 - **3. Offline Survivability**
+  This resilience feature ensures that the CE will continue operating even when it loses connectivity to the F5XC control plane      (when/if the tunnels go offline). If enabled, the CE caches its last-known configuration and continues to forward traffic,         enforce security policies and operate load balancers. Useful for deployments where the network connectivity is unreliable or       flaky! Not necessary for cloud deployments where connectivity is highly reliable.
 - **4. Site to Site Connectivity**
+  The settings here control how this CE site can communicate with other CE sites through the F5XC fabric. you can achieve this by    using the **Site Mesh Group** to create a mesh group where its inside (SLI) network is connected to other CE sites' inside         networks via encrypted tunnels through the RE backbone. The Datacenter cluster group is for connecting multiple CE sites that      share a common network or serve as a redundant gateway for the same Datacenter. 
 - **5. Network Firewall**
+  Enables L3/L4 network firewall functionality, where the CE can apply stateful firewall rules to traffic traversing the CE node directly. This is separate from the L7 WAAP capabilities applied at the HTTP LB level. 
 
 ### 2. Generate Node Token for the CE Site
 - Click the **Action icon** on the newly created CE site object and select **Generate Node Token**. This will generate a node token that you will need to use to deploy the CE site in your AWS environment.
