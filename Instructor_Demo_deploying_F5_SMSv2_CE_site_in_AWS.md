@@ -20,7 +20,7 @@ The F5XC platform will not be able to deploy the CE site into the customer's AWS
 - Log into your F5 Distributed Cloud tenant
 - In the F5 Distributed Cloud Console, select the **Multi-Cloud Network Connect** workspace and go to **Site Management** > **Customer Edge** > **Secure Mesh Sites v2**
 - Click **Add Secure Mesh Site**
-- Create a smsv2 site using the following details:
+- Create a smsv2 site object using the following details:
   - Name: **test-smsv2-ce**
   - Provider: **AWS**
   - Orchestration Mode: **Not Managed by F5XC** (Notice that this is the only option available. You are entirely responsible for provisioning the resources required to deploy the CE site in your AWS environment)
