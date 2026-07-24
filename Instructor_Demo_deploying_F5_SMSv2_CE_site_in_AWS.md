@@ -71,7 +71,7 @@ Use the following steps to deploy the CE site using the existing AWS infrastruct
     - **Firewall (security groups)**: Click **select existing security group** and select **juiceshop-sg** (This security group has been pre-configured to allow access to the CE site instance from the Internet. You can also create your own               security group and configure it accordingly).
   - **Configure Storage**: You can leave the default storage settings as is. The default storage size for the **t3.xlarge** instance is 79 GB, which is sufficient for most CE site deployments. However, you can increase the storage size if you          expect to have a large amount of traffic or data on the CE site.
   - **Advanced Details**:
-    - Scroll all the way down to the **User data - optional** section and paste in the **Node Token** you copied earlier. This script will configure the CE site instance with the necessary settings to connect to the nearest F5XC REs and              register the CE as part of the deployment process.
+    - Scroll all the way down to the **User data - optional** section and paste in the **Node Token** you copied earlier. This script will configure the CE site instance with the necessary settings to connect to the nearest F5XC RE and register the CE as part of the deployment process.
   - Click **Launch Instance**
 
 ### 4. Verify the CE Site Deployment
