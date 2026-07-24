@@ -3,9 +3,9 @@ aws_az        = "us-east-1a"
 ce_ami_id     = "ami-000bc40f0b0d64b35"
 instance_type = "m5.2xlarge"
 volume_size   = 80
-ssh_key_name  = "f5xc-smsv2-key"
-f5xc_api_p12_file = "./training1.console.ves.volterra.io.api-creds.p12"
-f5xc_api_url      = "https://training1.console.ves.volterra.io/api"
+ssh_key_name  = "XXXXXXXXXXXX"
+f5xc_api_p12_file = "./xxxxxxxxxx.api-creds.p12"
+f5xc_api_url      = "https://xxxxxxxxxxx.volterra.io/api"
 
 students = {
   "student101" = {
