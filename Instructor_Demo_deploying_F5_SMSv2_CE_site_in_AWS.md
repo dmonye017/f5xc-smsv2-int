@@ -85,7 +85,8 @@ Use the following steps to deploy the CE site using the existing AWS infrastruct
 - In the **Associate Elastic IP address** page, select **Network interface** and paste in the **Network Interface ID** you copied earlier.
 - Click the empty field under **Private IP address** and select the private IP address of the CE site instance.
 - Click **Associate** to associate the Elastic IP address with the CE site instance.
-- Go back to the **EC2 > Instances page**, select the **test-smsv2-ce** instance anc click **Instance state**. 
+- Go back to the **EC2 > Instances page**, select the **test-smsv2-ce** instance anc click **Instance state**.
+- Confirm that the instance now has a Public IPv4 address. 
 - Select **Reboot instance** and confirm the action by clicking **Reboot**.
 
 ### 5. Verify the CE Site Instance is Operational
