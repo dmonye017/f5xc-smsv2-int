@@ -62,7 +62,7 @@ Use the following steps to deploy the CE site using the existing AWS infrastruct
 - Enter the following details in the **Launch an Instance** page:
   - **name**: **test-smsv2-ce**
   - **instance type**: **t3.xlarge** (instance type can be changed based on the expected traffic load for the CE site)
-  - **Key pair**: Select the key pair you want to use to access the CE site instance (You will need to create a key pair if you do not have one already.
+  - **Key pair**: **xxxx-smsv2-key** (Select the key pair you want to use to access the CE site instance. You will need to create a key pair if you do not have one already).
     You can also use any of the existing key pairs, since this is a demo. You will need this key pair to access the CE site instance in your AWS environment)
   - **Network Settings**: Click **Edit** and select the following options:
     - **VPC**: **WAAP-training-VPC** (Select the VPC you want to deploy the CE site in).
