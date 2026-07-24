@@ -29,11 +29,11 @@ The F5XC platform will not be able to deploy the CE site into the customer's AWS
 - Click **Add Secure Mesh Site**
 
 These are the default settings for the CE site and they are usually enough to get the CE site deployed in AWS. However, if you want to customize the CE site deployment, you can do so by changing the settings in the CE site object. You may want to discuss some of the other available settings in case questions arise. Look out for the following options:
-**1. Regional Edge Selection**
-**2. Tunnel Type**
-**3. Offline Survivability**
-**4. Site to Site Connectivity**
-**5. Network Firewall**
+-**1. Regional Edge Selection**
+-**2. Tunnel Type**
+-**3. Offline Survivability**
+-**4. Site to Site Connectivity**
+-**5. Network Firewall**
 
 ### 2. Generate Node Token for the CE Site
 - Click the **Action icon** on the newly created CE site object and select **Generate Node Token**. This will generate a node token that you will need to use to deploy the CE site in your AWS environment.
