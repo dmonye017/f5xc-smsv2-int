@@ -6,10 +6,10 @@ As you may already be aware, the Legacy AWS VPC Site Deployment is no longer sup
 This change has significantly changed the way CE site are deployed. The customer now has a greater degree of responsibility for deploying and managing their CE configurations. 
 The F5XC platform no longer accepts the use of AWS credentials to orchestrate CE deployments. As a result, the customer must now have access to their own existing AWS infrastructure, in order to essentially "drop" the CE site into their existing AWS environment. 
 The expectation remains that the customer's AWS environment will already be configured with the prequisites including the following:
-**1. The customer must have access to the AWS Console and be able to create resources in their AWS account.**
-**2. An existing VPC with at least two subnets (One Public and one Private) in the same region as the F5XC CE site.**
-**3. The VPC must have an Internet Gateway attached to it, and the Public subnet must have a route to the Internet Gateway.**
-**4. Route tables must be configured for the subnets accordingly.**
+- **1. The customer must have access to the AWS Console and be able to create resources in their AWS account.**
+- **2. An existing VPC with at least two subnets (One Public and one Private) in the same region as the F5XC CE site.**
+- **3. The VPC must have an Internet Gateway attached to it, and the Public subnet must have a route to the Internet Gateway.**
+- **4. Route tables must be configured for the subnets accordingly.**
 
 In the absence of the above prerequisites, the AWS infrastructure will need to be provisioned to support the F5XC CE site deployment or it will fail. 
 The F5XC platform will not be able to deploy the CE site into the customer's AWS environment, as it no longer supports the use of AWS credentials for orchestration if the prerequisites are not met.
