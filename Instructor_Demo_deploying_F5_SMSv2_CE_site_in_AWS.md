@@ -98,7 +98,28 @@ The following steps are to be performed by the **Instructor only** and will show
 ```
 git clone https://github.com/dmonye017/f5xc-smsv2-int.git 
 ```
-#### 6b. Review the Terraform configuration files and make any necessary changes as required. The following files are included in the repository:
+### 6b. Generate API P12 file for the F5XC API
+- Log into your F5 Distributed Cloud tenant and navigate to **Administration** > **Credentials**
+- Click **Add Credentials** and provide details for the following:
+  - **CredentialName**: **instructor-api-creds**
+  - **Credential Type**: **API Certificate**
+  - **Password**: **XXXXXXXX**
+  - **Confirm Password**: **XXXXXXXX**
+  - **Expiry Date**: **MM-DD-YYYY**
+- Click **Download**
+
+Please note the Password you entered when creating the API Certificate. You will need to export the value to your Terminal environment to facilitate authentication with the F5XC API using the P12 file.
+Copy the downloaded P12 file into the **same directory** where you will be running the Terraform configuration. 
+You will need to update the **f5xc_api_p12_file** variable in the **students.auto.tfvars** file with the path to the P12 file.
+
+### 6c. Export the F5XC API P12 file password to your Terminal environment
+- Switch back to the terminal window from Step 6a and run the following command to export the password:
+```
+export VES_P12_PASSWORD="XXXXXXXXX"
+```
+Ensure that you replace **XXXXXXXXX** with the password you entered when creating the API Certificate in Step 6b. This will allow Terraform to authenticate with the F5XC API using the P12 file.
+
+#### 6d. Review the Terraform configuration files and make any necessary changes as required. The following files are included in the repository:
 - **main.tf**: This file contains the main Terraform configuration for deploying the CE site in AWS.
 - **variables.tf**: This file contains the variable definitions for the Terraform configuration.
 - **outputs.tf**: This file contains the output definitions for the Terraform configuration.
@@ -118,7 +139,7 @@ git clone https://github.com/dmonye017/f5xc-smsv2-int.git
 - **providers.tf**: This file contains the provider configuration for the Terraform configuration.
 - **f5xc-smsv2.tf**: This file contains the Terraform configuration for generating the Node Token and creating the F5XC SMSv2 CE site object in F5 Distributed Cloud.
 
-### 6c. Before Initializing the Terraform Configuration
+### 6e. Before Initializing the Terraform Configuration
 - Before initializing the Terraform configuration, ensure that you have the following prerequisites in place:
   - Ensure that you have the appropriate permissions to create resources in your AWS environment.
   - Terraform installed on your local machine.
@@ -127,7 +148,7 @@ git clone https://github.com/dmonye017/f5xc-smsv2-int.git
   - If deploying outside of **us-east-1** in AWS, Locate AMI ID for your region by navigating to **AWS Marketplace > Manage Subscriptions > F5 Distributed Cloud CE BYOL** and click launch instance. select Launch on EC2 console and view the         list of AMIs per region on the AMI details section. Once the AMI ID is identified, enter this in the **ami_id** variable for the **students.auto.tfvars** file.
   - Depending on the number of students registered to attend the class, the Instructor can modify the **students.auto.tfvars** file to only have the specific number of students. 
 
-### 6d. Initialize the Terraform Configuration
+### 6f. Initialize the Terraform Configuration
 Open a terminal and navigate to the directory where you cloned the GitHub repository.
 Run the following command to initialize the Terraform configuration:
 ```
@@ -135,21 +156,21 @@ terraform init
 ```
 This command will download the necessary provider plugins and initialize the Terraform configuration.
 
-### 6e. Plan the Terraform Configuration
+### 6h. Plan the Terraform Configuration
 Run the following command to plan the Terraform configuration:
 ```
 terraform plan
 ```
 This command will show you the resources that will be created, modified, or destroyed by the Terraform configuration. Review the output to ensure that the resources will be created as expected.
 
-### 6f. Apply the Terraform Configuration
+### 6i. Apply the Terraform Configuration
 Run the following command to apply the Terraform configuration:
 ```
 terraform apply
 ```
 This command will create the resources in your AWS environment and deploy the CE site. You will be prompted to confirm the action. Type **yes** and press **Enter** to proceed with the deployment. The deployment process may take several minutes to complete. You can monitor the progress of the deployment by checking the output in the terminal.
 
-### 6g. Verify the CE Site Deployment
+### 6j. Verify the CE Site Deployment
 Once the deployment is complete, you can verify that multiple CE sites have been successfully deployed by checking the **Secure Mesh Sites v2** page in the F5 Distributed Cloud Console. You should see multiple CE site objects with the names corresponding to the student names defined in the **students.auto.tfvars** file. The **Site Admin State** for each CE site should be **Online** once the deployment is complete.
 
 ### 7. Destroying the CE Sites
