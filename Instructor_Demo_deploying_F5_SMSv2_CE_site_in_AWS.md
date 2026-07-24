@@ -1,7 +1,10 @@
 # Instructor Demo: Deploying F5 SMSv2 CE site in AWS (ClickOps) & Terraform Automation
 
 ## Instructor Brief:
-This demo will show how to deploy an F5 SMSv2 CE site in AWS using the F5XC Console as a starting point, and then using the AWS Console to complete the deployment. As you may already be aware, the Legacy AWS VPC Site Deployment is no longer supported in F5XC, and the new F5XC SMSv2 CE Site type is now the recommended option for Customer Edge deployments. This change has significantly changed the way CE site are deployed. The customer now has a greater degree of responsibility for deploying and managing their CE configurations. The F5XC platform no longer accepts the use of AWS credentials to orchestrate CE deployments. As a result, the customer must now have access to their own existing AWS infrastructure, in order to essentially "drop" the CE site into their AWS environment. 
+This demo will show how to deploy an F5 SMSv2 CE site in AWS using the F5XC Console as a starting point, and then using the AWS Console to complete the deployment. 
+As you may already be aware, the Legacy AWS VPC Site Deployment is no longer supported in F5XC, and the new F5XC SMSv2 CE Site type is now the recommended option for Customer Edge deployments. 
+This change has significantly changed the way CE site are deployed. The customer now has a greater degree of responsibility for deploying and managing their CE configurations. 
+The F5XC platform no longer accepts the use of AWS credentials to orchestrate CE deployments. As a result, the customer must now have access to their own existing AWS infrastructure, in order to essentially "drop" the CE site into their existing AWS environment. 
 The expectation remains that the customer's AWS environment will already be configured with the prequisites including the following:
 **1. The customer must have access to the AWS Console and be able to create resources in their AWS account.**
 **2. An existing VPC with at least two subnets (One Public and one Private) in the same region as the F5XC CE site.**
