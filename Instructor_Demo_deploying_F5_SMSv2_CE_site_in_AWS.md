@@ -4,7 +4,8 @@
 This demo will show how to deploy an F5XC SMSv2 CE site in AWS using the F5XC Console as a starting point, and then using the AWS Console to complete the deployment. 
 As you may already be aware, the Legacy AWS VPC Site Deployment is no longer supported in F5XC, and the new F5XC SMSv2 CE Site type is now the recommended option for Customer Edge deployments. 
 This change has significantly altered the way CE sites are deployed. The customer now has a greater degree of responsibility for deploying and managing their CE configurations. 
-The F5XC platform no longer accepts/supports the use of cloud credentials to orchestrate CE deployments. As a result, the customer must now have access to their own existing AWS infrastructure, in order to essentially "drop" the CE site into their existing AWS environment. 
+The F5XC platform no longer accepts/supports the use of cloud credentials to orchestrate CE deployments. As a result, the customer must now have access to their own existing AWS infrastructure, in order to essentially "drop" the CE site into their existing AWS environment.
+
 The expectation remains that the customer's AWS environment will already be configured with the CE pre-requisites including the following:
 - **1. The customer must have access to the AWS Console and be able to create resources in their AWS account.**
 - **2. An existing VPC with at least two subnets (One Public and one Private) in the same region as the F5XC CE site.**
@@ -16,7 +17,8 @@ The F5XC platform will not be able to deploy the CE site into the customer's AWS
 
 ## What is a Secure Mesh Site v2?
 
-<img width="2048" height="2048" alt="smsv2_ce_node_architecture" src="https://github.com/user-attachments/assets/6fbf9023-e0de-4eba-9e55-9452f9cd808b" />
+<img width="1000" height="1000" alt="smsv2_ce_node_architecture" src="https://github.com/user-attachments/assets/6fbf9023-e0de-4eba-9e55-9452f9cd808b" />
+
 
 A Secure Mesh Site V2 CE is the current generation site type in F5 Distributed Cloud for deploying CE nodes. 
 It is an optimized RHEL node running a containerized service stack that provides a collection of services, including L3-L4 core networking functions, control plane orchestration, L7 traffic steering, API Security, data aggregation and observability to name a few.  
@@ -27,7 +29,10 @@ Inside the CE node:
 - **The Global Controller** receives configuration updates from the XC Console and translates them into data plane configuration.
 - **The Management plane** collects and sends request logs, security event logs, performance metrics and more back to the F5XC Console for dashboards, alerting and AI/ML analysis.
 
-The two interfaces (SLO and SLI) are fundamental to understanding how a CE works.The SLO (Site Local Outside) connects the CE to the internet, F5 REs and external clients. It is typically on the internet-facing subnet in your cloud environment. It needs a routable IP address for RE tunnel establishment. Every CE must have an SLO interface.The SLI (Site Local Inside) connects the CE to internal/private networks. This includes your backend workloads, application servers and internal services. It is typically on the internal-facing subnet in your environment, on private IP addressing.  The default configuration is a single-NIC CE (SLO only) but a Dual-NIC (SLO + SLI) is required for inside network connectivity, site to site mesh capabilities.
+The two interfaces (SLO and SLI) are fundamental to understanding how a CE works.
+- **The SLO (Site Local Outside)** connects the CE to the internet, F5 REs and external clients. It is typically on the internet-facing subnet in your cloud environment. It needs a routable IP address for RE tunnel establishment. Every CE must have an SLO interface.
+- **The SLI (Site Local Inside)** connects the CE to internal/private networks. This includes your backend workloads, application servers and internal services. It is typically on the internal-facing subnet in your environment, on private IP addressing.
+The default configuration is a single-NIC CE (SLO only) but a Dual-NIC (SLO + SLI) is required for inside network connectivity, and site-to-site mesh capabilities.
 
 ## Deployment Steps
 
@@ -43,7 +48,7 @@ The two interfaces (SLO and SLI) are fundamental to understanding how a CE works
   - Leave all other settings as default
 - Click **Add Secure Mesh Site**
 
-These are the default settings for the CE site and they are usually enough to get the CE site deployed in AWS. However, if you want to customize the CE site deployment, you can do so by changing the settings in the CE site object. You may want to discuss some of the other available settings in case questions arise. Look out for the following options:
+These are the default settings for the CE site and they are usually enough to get the CE site deployed in AWS. However, if you want to customize the CE site deployment, you can do so by changing the settings in the CE site object in the F5XC Console. You may want to discuss some of the other available settings in case questions arise. Look out for the following options:
 - **Regional Edge Selection**
   This controls which F5XC RE your CE site will connect to for its control plane and data plane tunnels.
   The default is Geo-proximity (the CE dynamically connects to the nearest RE based on geography and latency).
@@ -123,7 +128,7 @@ Clone the following GitHub repository to your local machine:
 ```
 git clone https://github.com/dmonye017/f5xc-smsv2-int.git 
 ```
-### 6b. Generate API P12 file for the F5XC API
+#### 6b. Generate API P12 file for the F5XC API
 - Log into your F5 Distributed Cloud tenant and navigate to **Administration** > **Credentials**
 - Click **Add Credentials** and provide details for the following:
   - **CredentialName**: **instructor-api-creds**
@@ -137,7 +142,7 @@ Please note the Password you entered when creating the API Certificate. You will
 Copy the downloaded P12 file into the **same directory** where you will be running the Terraform configuration. 
 You will need to update the **f5xc_api_p12_file** variable in the **students.auto.tfvars** file with the path to the P12 file.
 
-### 6c. Export the F5XC API P12 file password to your Terminal environment
+#### 6c. Export the F5XC API P12 file password to your Terminal environment
 Switch back to the terminal window from Step 6a and run the following command to export the password:
 ```
 export VES_P12_PASSWORD="XXXXXXXXX"
@@ -164,7 +169,7 @@ Ensure that you replace **XXXXXXXXX** with the password you entered when creatin
 - **providers.tf**: This file contains the provider configuration for the Terraform configuration.
 - **f5xc-smsv2.tf**: This file contains the Terraform configuration for generating the Node Token and creating the F5XC SMSv2 CE site object in F5 Distributed Cloud.
 
-### 6e. Before Initializing the Terraform Configuration
+#### 6e. Before Initializing the Terraform Configuration
   - Ensure that you have the appropriate permissions to create resources in your AWS environment.
   - Terraform is installed on your local machine.
   - AWS CLI installed and configured with the appropriate credentials to access your AWS environment.
@@ -172,7 +177,7 @@ Ensure that you replace **XXXXXXXXX** with the password you entered when creatin
   - If deploying outside of **us-east-1** in AWS, Locate AMI ID for your region by navigating to **AWS Marketplace > Manage Subscriptions > F5 Distributed Cloud CE BYOL** and click launch instance. select Launch on EC2 console and view the         list of AMIs per region on the AMI details section. Once the AMI ID is identified, enter this in the **ami_id** variable for the **students.auto.tfvars** file.
   - Depending on the number of students registered to attend the class, the Instructor can modify the **students.auto.tfvars** file to only have the specific number of students. 
 
-### 6f. Initialize the Terraform Configuration
+#### 6f. Initialize the Terraform Configuration
 Open a terminal and navigate to the directory where you cloned the GitHub repository.
 Run the following command to initialize the Terraform configuration:
 ```
@@ -180,21 +185,21 @@ terraform init
 ```
 This command will download the necessary provider plugins and initialize the Terraform configuration.
 
-### 6h. Plan the Terraform Configuration
+#### 6h. Plan the Terraform Configuration
 Run the following command to plan the Terraform configuration:
 ```
 terraform plan
 ```
 This command will show you the resources that will be created, modified, or destroyed by the Terraform configuration. Review the output to ensure that the resources will be created as expected.
 
-### 6i. Apply the Terraform Configuration
+#### 6i. Apply the Terraform Configuration
 Run the following command to apply the Terraform configuration:
 ```
 terraform apply
 ```
 This command will create the resources in your AWS environment and deploy the CE site. You will be prompted to confirm the action. Type **yes** and press **Enter** to proceed with the deployment. The deployment process may take several minutes to complete. You can monitor the progress of the deployment by checking the output in the terminal.
 
-### 6j. Verify the CE Site Deployment
+#### 6j. Verify the CE Site Deployment
 Once the deployment is complete, you can verify that multiple CE sites have been successfully deployed by checking the **Secure Mesh Sites v2** page in the F5 Distributed Cloud Console. You should see multiple CE site objects with the names corresponding to the student names defined in the **students.auto.tfvars** file. The **Site Admin State** for each CE site should be **Online** once the deployment is complete.
 
 ### 7. Destroying the CE Sites
