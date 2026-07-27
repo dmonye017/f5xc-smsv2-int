@@ -1,18 +1,30 @@
-# Instructor Demo: Deploying F5 SMSv2 CE site in AWS (ClickOps) & Terraform Automation
+# Instructor Demo: Deploying F5 Distributed Cloud (F5XC) SMSv2 CE site in AWS (ClickOps) & Terraform Automation
 
 ## Instructor Brief:
-This demo will show how to deploy an F5 SMSv2 CE site in AWS using the F5XC Console as a starting point, and then using the AWS Console to complete the deployment. 
+This demo will show how to deploy an F5XC SMSv2 CE site in AWS using the F5XC Console as a starting point, and then using the AWS Console to complete the deployment. 
 As you may already be aware, the Legacy AWS VPC Site Deployment is no longer supported in F5XC, and the new F5XC SMSv2 CE Site type is now the recommended option for Customer Edge deployments. 
 This change has significantly altered the way CE sites are deployed. The customer now has a greater degree of responsibility for deploying and managing their CE configurations. 
-The F5XC platform no longer accepts the use of AWS credentials to orchestrate CE deployments. As a result, the customer must now have access to their own existing AWS infrastructure, in order to essentially "drop" the CE site into their existing AWS environment. 
-The expectation remains that the customer's AWS environment will already be configured with the prequisites including the following:
+The F5XC platform no longer accepts/supports the use of cloud credentials to orchestrate CE deployments. As a result, the customer must now have access to their own existing AWS infrastructure, in order to essentially "drop" the CE site into their existing AWS environment. 
+The expectation remains that the customer's AWS environment will already be configured with the CE pre-requisites including the following:
 - **1. The customer must have access to the AWS Console and be able to create resources in their AWS account.**
 - **2. An existing VPC with at least two subnets (One Public and one Private) in the same region as the F5XC CE site.**
 - **3. The VPC must have an Internet Gateway attached to it, and the Public subnet must have a route to the Internet Gateway.**
 - **4. Route tables must be configured for the subnets accordingly.**
 
-In the absence of the above prerequisites, the AWS infrastructure will need to be provisioned to support the F5XC CE site deployment or it will fail. 
+In the absence of the above prerequisites, the required AWS infrastructure will need to be provisioned to support the F5XC CE site deployment or it will fail. 
 The F5XC platform will not be able to deploy the CE site into the customer's AWS environment, as it no longer supports the use of AWS credentials for orchestration if the prerequisites are not met.
+
+## What is a Secure Mesh Site v2?
+A Secure Mesh Site V2 CE is the current generation site type in F5 Distributed Cloud for deploying CE nodes. 
+It is an optimized RHEL node running a containerized service stack that provides a collection of services, including L3-L4 core networking functions, control plane orchestration, L7 traffic steering, API Security, data aggregation and observability to name a few.  
+Inside the CE node:
+- **The Volterra Platform Manager (VPM)** component acts as a local daemon running inside the node that reads the cloud-init/user-data on first boot, initiates the registration to F5 REs using the site token, downloads initial configuration and manages config sync.
+- **The Volterra Edge Router (VER)** component acts as the network routing engine that establishes and maintains IPSec/SSL tunnels to F5 REs providing secure connectivity to the F5XC fabric.
+- **The Data plane** is built on a heavily modified L7 proxy that handles all application traffic processing.
+- **The Global Controller** receives configuration updates from the XC Console and translates them into data plane configuration.
+- **The Management plane** collects and sends request logs, security event logs, performance metrics and more back to the F5XC Console for dashboards, alerting and AI/ML analysis.
+
+The two interfaces (SLO and SLI) are fundamental to understanding how a CE works.The SLO (Site Local Outside) connects the CE to the internet, F5 REs and external clients. It is typically on the internet-facing subnet in your cloud environment. It needs a routable IP address for RE tunnel establishment. Every CE must have an SLO interface.The SLI (Site Local Inside) connects the CE to internal/private networks. This includes your backend workloads, application servers and internal services. It is typically on the internal-facing subnet in your environment, on private IP addressing.  The default configuration is a single-NIC CE (SLO only) but a Dual-NIC (SLO + SLI) is required for inside network connectivity, site to site mesh capabilities.
 
 ## Deployment Steps
 
