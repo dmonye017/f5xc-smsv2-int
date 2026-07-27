@@ -15,6 +15,9 @@ In the absence of the above prerequisites, the required AWS infrastructure will 
 The F5XC platform will not be able to deploy the CE site into the customer's AWS environment, as it no longer supports the use of AWS credentials for orchestration if the prerequisites are not met.
 
 ## What is a Secure Mesh Site v2?
+
+<img width="2048" height="2048" alt="smsv2_ce_node_architecture" src="https://github.com/user-attachments/assets/6fbf9023-e0de-4eba-9e55-9452f9cd808b" />
+
 A Secure Mesh Site V2 CE is the current generation site type in F5 Distributed Cloud for deploying CE nodes. 
 It is an optimized RHEL node running a containerized service stack that provides a collection of services, including L3-L4 core networking functions, control plane orchestration, L7 traffic steering, API Security, data aggregation and observability to name a few.  
 Inside the CE node:
