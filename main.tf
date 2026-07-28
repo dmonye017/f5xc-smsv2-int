@@ -291,6 +291,7 @@ resource "aws_instance" "ce_node" {
   }
 
   # Explicit dependency — don't launch until site object and token exist
+  # Explicit dependency - wait for the CE site and token to become usable before bootstrapping the CE node
   depends_on = [
     volterra_securemesh_site_v2.student,
     volterra_token.student,
