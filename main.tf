@@ -293,7 +293,8 @@ resource "aws_instance" "ce_node" {
   # Explicit dependency — don't launch until site object and token exist
   depends_on = [
     volterra_securemesh_site_v2.student,
-    volterra_token.student
+    volterra_token.student,
+    time_sleep.token_ready
   ]
 
   tags = {
