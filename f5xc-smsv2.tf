@@ -2,14 +2,30 @@
 # SITE TOKEN — One per student, auto-generated
 # ============================================================
 
-resource "volterra_token" "student" {
-  depends_on = [volterra_securemesh_site_v2.student]
+resource "time_sleep" "site_ready" {
   for_each = var.students
+
+  depends_on = [volterra_securemesh_site_v2.student]
+
+  create_duration = "180s"
+}
+
+resource "volterra_token" "student" {
+  depends_on = [time_sleep.site_ready]
+  for_each    = var.students
 
   name      = "${each.key}-site-token"
   namespace = "system"
   type      = 1
   site_name = volterra_securemesh_site_v2.student[each.key].name
+}
+
+resource "time_sleep" "token_ready" {
+  for_each = var.students
+
+  depends_on = [volterra_token.student]
+
+  create_duration = "60s"
 }
 
 # ============================================================
