@@ -10,6 +10,10 @@ terraform {
       source  = "volterraedge/volterra"
       version = "~> 0.11"
     }
+    time = {
+      source  = "hashicorp/time"
+      version = "~> 0.12"
+    }
   }
 }
 
