@@ -40,11 +40,11 @@ The default configuration is a single-NIC CE (SLO only) but a Dual-NIC (SLO + SL
 - Log into your F5 Distributed Cloud tenant
 - In the F5 Distributed Cloud Console, select the **Multi-Cloud Network Connect** workspace and go to **Site Management** > **Secure Mesh Sites v2**
 - Click **Add Secure Mesh Site**
-- Create a smsv2 site object using the following details:
+- Create a SMSv2 site object using the following details:
   - Name: **test-smsv2-ce**
   - Provider: **AWS**
   - Orchestration Mode: **Not Managed by F5XC** (Notice that this is the only option available. You are entirely responsible for provisioning the resources required to deploy the CE site in your AWS environment)
-  - High Availability: **Disable**
+  - High Availability: **Disable**. If the HA option is disabled, then your CE site only supports one node. If the HA option is enabled, then the CE site **requires** three (3) nodes. You can add additional nodes to your       CE site when this option is enabled. However, you cannot change this option once the CE site is created.   
   - Leave all other settings as default
 - Click **Add Secure Mesh Site**
 
