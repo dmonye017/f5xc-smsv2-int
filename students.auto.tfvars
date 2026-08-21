@@ -1,6 +1,6 @@
-aws_region    = "us-east-1"
-aws_az        = "us-east-1a"
-ce_ami_id     = "ami-000bc40f0b0d64b35"
+aws_region    = "us-west-2"
+aws_az        = "us-west-2a"
+ce_ami_id     = "ami-0c8aa6e75c9eabed8"
 instance_type = "m5.2xlarge"
 volume_size   = 80
 ssh_key_name  = "XXXXXXXXXXXX"
@@ -67,5 +67,15 @@ students = {
     vpc_cidr        = "172.31.0.0/16"
     slo_subnet_cidr = "172.31.112.0/24"
     sli_subnet_cidr = "172.31.132.0/24"
+  }
+  "student113" = {
+    vpc_cidr        = "172.31.0.0/16"
+    slo_subnet_cidr = "172.31.113.0/24"
+    sli_subnet_cidr = "172.31.133.0/24"
+  }
+  "student114" = {
+    vpc_cidr        = "172.31.0.0/16"
+    slo_subnet_cidr = "172.31.114.0/24"
+    sli_subnet_cidr = "172.31.134.0/24"
   }
 }
