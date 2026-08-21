@@ -118,41 +118,25 @@ resource "aws_security_group" "ce_slo" {
   vpc_id      = aws_vpc.student[each.key].id
 
   ingress {
-    description = "IPSEC IKE"
-    from_port   = 4500
-    to_port     = 4500
-    protocol    = "udp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "IPSEC NAT-T"
-    from_port   = 500
-    to_port     = 500
-    protocol    = "udp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "HTTPS"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "HTTP"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
     description = "SSH"
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # LOCK THIS DOWN
+  }
+
+  ingress {
+    description = "All ICMP - IPv4"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"] # LOCK THIS DOWN
+  }
+
+  ingress {
+    description = "Local UI Access"
+    from_port   = 65500
+    to_port     = 65500
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"] # LOCK THIS DOWN
   }
